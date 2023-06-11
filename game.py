@@ -6,9 +6,18 @@ win_width = 1280
 win_height = 720
 
 class GameSprite(sprite.Sprite):
-     def __init__(self, player_imag, player_x, player_y, size_x, size_y, player_speed):
-         sprite.Sprite.__init__(self)
+    def __init__(self, player_image, player_x, player_y, size_x, size_y, player_speed):
+        # Вызываем конструктор класса (Sprite):
+        sprite.Sprite.__init__(self)
+
         self.image = transform.scale(image.load(player_image), (size_x, size_y))
+        self.speed = player_speed
+        self.width = size_x
+        self.height = size_y
+     
+        self.rect = self.image.get_rect()
+        self.rect.x = player_x
+        self.rect.y = player_y
    
 class Player(GameSprite):
     def update_l_r(self):
